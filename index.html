@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./fontawesome/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Frequência</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <img class="logo" src="./imagem/esct.png" alt="" width="200px" />
+      </div>
+      <h1>Sistema de frequência</h1>
+      <!--Botões de ação-->
+      <div class="div-btn-tabela align-text-bottom container">
+        <a href="./Tabela.html">
+          <button class="btn btn-danger btn-tabela">
+            <i class="fa-solid fa-table"></i>
+          </button>
+        </a>
+        <button class="btn btn-primary ms-2" onclick="addAluno()">
+          <i class="fa-solid fa-user-plus"></i>
+        </button>
+      </div>
+      <!--Seleção de modalidades-->
+      <div class="container selecao mt-4">
+        <p>Selecione a modalidade:</p>
+        <select
+          id="seletor"
+          class="form-control form-control mt-2 mb-4 seletor"
+        >
+          <option value="50">Selecione...</option>
+          <option value="0">RITBOX SEDE</option>
+          <option value="1">ZUMBA SEDE</option>
+          <option value="2">JIU-JITSU MANHÃ</option>
+          <option value="3">JIU-JITSU TARDE</option>
+          <option value="4">GINASTICA PARA IDOSOS</option>
+        </select>
+        <div class="div-botao">
+          <!--Botão de confirmar o select-->
+          <button onclick="atualizouSelect()" class="btn btn-success ml-4">
+            <i class="fa-solid fa-check"></i>
+          </button>
+        </div>
+      </div>
+      <div class="head-0 container">
+        <div class="head-1 titulo"></div>
+        <div class="head-2">
+          <div class="head-3 horario"></div>
+          <div class="head-4 professor"></div>
+        </div>
+      </div>
+      <!--Tabela de Lista de Frequencia-->
+      <div class="table-display">
+        <table class="table table-bordered">
+          <thead class="data">
+            <tr>
+              <th scope="col" class="numero-head"></th>
+              <th scope="col" class="nome-head"></th>
+              <th scope="col" class="data-1"></th>
+              <th scope="col" class="data-2"></th>
+            </tr>
+          </thead>
+          <tbody class="linha-0">
+            <!-- <tr class="linha-1">
+              <th scope="row">1</th>
+              <td class="nome-table">
+                Douglas Santos Pereira
+                <p id="circulo" class="circulo"></p>
+                <p class="circulo1"></p>
+              </td>
+              <td class="data">
+                <button
+                  onclick="botaoP1()"
+                  type="button"
+                  class="btn btn-success btn1"
+                ></button>
+                <button
+                  onclick="botaoJ1()"
+                  type="button"
+                  class="btn btn-secondary btn1"
+                ></button>
+                <button
+                  onclick="botaoF1()"
+                  type="button"
+                  class="btn btn-danger btn1"
+                ></button>
+              </td>
+              <td class="data">
+                <button
+                  onclick="botaoP2()"
+                  type="button"
+                  class="btn btn-success btn1"
+                ></button>
+                <button
+                  onclick="botaoJ2()"
+                  type="button"
+                  class="btn btn-secondary btn1"
+                ></button>
+                <button
+                  onclick="botaoF2()"
+                  type="button"
+                  class="btn btn-danger btn1"
+                ></button>
+              </td>
+            </tr>-->
+          </tbody>
+        </table>
+      </div>
+      <!--popup de informaçoes do aluno-->
+      <div class="popup-wrapper"></div>
+      <!--popup de formulario para adicionar alunos-->
+      <div class="popup-form">
+        <div class="popup">
+          <div class="popup-close-add">x</div>
+          <div class="popup-content">
+            <h2>Adicionar aluno</h2>
+            <form>
+              <div class="container selecao mt-4">
+                <p>Modalidade:</p>
+                <select
+                  id="seletor-form"
+                  onchange="iddoaluno()"
+                  class="form-control form-control mt-2 mb-4 seletor-add"
+                >
+                  <option value="50">Selecione...</option>
+                  <option value="0">RITBOX SEDE</option>
+                  <option value="1">ZUMBA SEDE</option>
+                  <option value="2">JIU-JITSU MANHÃ</option>
+                  <option value="3">JIU-JITSU TARDE</option>
+                  <option value="4">GINASTICA PARA IDOSOS</option>
+                </select>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">ID </label>
+                <div class="col-sm-10">
+                  <input
+                    type="number"
+                    class="form-control id-add"
+                    id="id"
+                    disabled
+                  />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Nome</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control nome-add" id="nome" />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="div-botao">
+            <button onclick="adicionarAluno()" class="btn btn-success ml-4">
+              Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+      <button onclick="salvar()" class="btn btn-success">Salvar</button>
+    </div>
+    <script src="./listas.js"></script>
+    <script src="./script.js"></script>
+    <br />
+  </body>
+</html>
